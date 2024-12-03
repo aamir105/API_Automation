@@ -1,0 +1,1063 @@
+<html>
+<head>
+<title>AppTest.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #7a7e85;}
+.s5 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+AppTest.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">org</span><span class="s2">.</span><span class="s1">aamir</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">io</span><span class="s2">.</span><span class="s1">restassured</span><span class="s2">.</span><span class="s1">response</span><span class="s2">.</span><span class="s1">Response</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">junit</span><span class="s2">.</span><span class="s1">framework</span><span class="s2">.</span><span class="s1">TestCase</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">junit</span><span class="s2">.</span><span class="s1">framework</span><span class="s2">.</span><span class="s1">TestSuite</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">testng</span><span class="s2">.</span><span class="s1">Assert</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">testng</span><span class="s2">.</span><span class="s1">annotations</span><span class="s2">.</span><span class="s1">BeforeClass</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">testng</span><span class="s2">.</span><span class="s1">annotations</span><span class="s2">.</span><span class="s1">Test</span><span class="s2">;</span>
+
+<span class="s0">import static </span><span class="s1">io</span><span class="s2">.</span><span class="s1">restassured</span><span class="s2">.</span><span class="s1">RestAssured</span><span class="s2">.</span><span class="s1">given</span><span class="s2">;</span>
+
+
+<span class="s0">public class </span><span class="s1">AppTest</span><span class="s2">{</span>
+    <span class="s1">String token </span><span class="s2">= </span><span class="s3">&quot;BQAYv8sbH1N26ATxHsUTHhSWX8QtlVKDesOjIdc3vP0HOWp7CN-KVcq_u133_uRSGU6amBTDmvC0uUiFLP9ZhYHRmTKOerHmv96lpG_t8rrH2ieNrToKQnjn9BWvfbtvN_1rPEMS6Os1qdiPE-3WoFOZ1-pEYu2X4EP0jRCGl7mcVwsVWlpEQ9qpkV6NA41r3As_8lAHDFdwz0I5zIe8tqI8sTHsrA&quot;</span><span class="s2">;</span>
+
+<span class="s4">//    @Test</span>
+<span class="s4">//    public void token(){</span>
+<span class="s4">//        Response r = given()</span>
+<span class="s4">//                .querxyParam(&quot;response_type&quot;,&quot;token&quot;)</span>
+<span class="s4">//                .queryParam(&quot;client_id&quot;,&quot;47e0b50324c14163a27e9b2fc2e0be99&quot;)</span>
+<span class="s4">//                .queryParam(&quot;scope&quot;,&quot;user-read-private, user-read-email&quot;)</span>
+<span class="s4">//                .queryParam(&quot;redirect_url&quot;,&quot;http://localhost:3000&quot;)</span>
+<span class="s4">//                .queryParam(&quot;state&quot;,&quot;state&quot;)</span>
+<span class="s4">//                .when()</span>
+<span class="s4">//                .post();</span>
+<span class="s4">//    }</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">usres</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;accept&quot;</span><span class="s2">,</span><span class="s3">&quot;application/json&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Content-Type&quot;</span><span class="s2">,</span><span class="s3">&quot;application/json&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot;</span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">assertThat</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+
+<span class="s4">// If we want any specific name or value at that time we use path method</span>
+        <span class="s1">String Id </span><span class="s2">= </span><span class="s1">res</span><span class="s2">.</span><span class="s1">path</span><span class="s2">(</span><span class="s3">&quot;id&quot;</span><span class="s2">);</span>
+        <span class="s1">Assert</span><span class="s2">.</span><span class="s1">assertEquals</span><span class="s2">(</span><span class="s1">Id</span><span class="s2">,</span><span class="s3">&quot;31it6ppj3jflk6623vayww4iaw2m&quot;</span><span class="s2">);</span>
+
+<span class="s4">//If we want any value under the folder then</span>
+        <span class="s1">String Id1 </span><span class="s2">= </span><span class="s1">res</span><span class="s2">.</span><span class="s1">path</span><span class="s2">(</span><span class="s3">&quot;external_urls.spotify&quot;</span><span class="s2">);</span>
+        <span class="s1">Assert</span><span class="s2">.</span><span class="s1">assertEquals</span><span class="s2">(</span><span class="s1">Id1</span><span class="s2">,</span><span class="s3">&quot;31it6ppj3jflk6623vayww4iaw2m&quot;</span><span class="s2">);</span>
+
+    <span class="s2">}</span>
+<span class="s4">//----------------------------------------------* (START USER) *--------------------------------------------------------------</span>
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">GetCurrentUsersProfile</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)   </span><span class="s4">//indicating that the client can accept any type of response.</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)   </span><span class="s4">//header with a Bearer token.</span>
+                                                                 <span class="s4">// This token is typically used for authentication in APIs,</span>
+                                                                <span class="s4">// ensuring the request is made by an authenticated user.</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">String userid</span><span class="s2">=</span><span class="s1">res</span><span class="s2">.</span><span class="s1">path</span><span class="s2">(</span><span class="s3">&quot;id&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">GetUsersTopItems</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/top/tracks&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">GetUsersProfile</span><span class="s2">(){</span>
+        <span class="s1">String userid </span><span class="s2">= </span><span class="s3">&quot;aamir&quot;</span><span class="s2">;</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/users/&quot; </span><span class="s2">+ </span><span class="s1">userid</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+        <span class="s1">String msg</span><span class="s2">=</span><span class="s1">res</span><span class="s2">.</span><span class="s1">path</span><span class="s2">(</span><span class="s3">&quot;display_name&quot;</span><span class="s2">);</span>
+        <span class="s1">Assert</span><span class="s2">.</span><span class="s1">assertEquals</span><span class="s2">(</span><span class="s1">msg</span><span class="s2">,</span><span class="s3">&quot;aamir&quot;</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">FollowPlaylist</span><span class="s2">(){</span>
+        <span class="s1">String userplaylistid </span><span class="s2">= </span><span class="s3">&quot;3cEYpjA9oz9GiPac4AsH4n&quot;</span><span class="s2">;</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">put</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/playlists/&quot;</span><span class="s2">+ </span><span class="s1">userplaylistid </span><span class="s2">+</span><span class="s3">&quot;/followers&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">UnfollowPlaylist</span><span class="s2">(){</span>
+        <span class="s1">String userplaylistid </span><span class="s2">= </span><span class="s3">&quot;3cEYpjA9oz9GiPac4AsH4n&quot;</span><span class="s2">;</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">delete</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/playlists/&quot;</span><span class="s2">+</span><span class="s1">userplaylistid</span><span class="s2">+</span><span class="s3">&quot;/followers&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">GetFollowedArtists</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/following?type=artist&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">FollowArtistsorUsers</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">body</span><span class="s2">(</span><span class="s3">&quot;{</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;    </span><span class="s0">\&quot;</span><span class="s3">ids</span><span class="s0">\&quot;</span><span class="s3">: [</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;        </span><span class="s0">\&quot;</span><span class="s3">2CIMQHirSU0MQqyYHq0eOx</span><span class="s0">\&quot;</span><span class="s3">,</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;        </span><span class="s0">\&quot;</span><span class="s3">57dN52uHvrHOxijzpIgu3E</span><span class="s0">\&quot;</span><span class="s3">,</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;        </span><span class="s0">\&quot;</span><span class="s3">1vCWHaC5f2uS3yhpwWbIA6</span><span class="s0">\&quot;</span><span class="s3">,</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+   </span>
+                        <span class="s3">&quot;    ]</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;}&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">put</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/following?type=artist&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">204</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">UnfollowArtistsorUsers</span><span class="s2">(){</span>
+        <span class="s1">String userplaylistid </span><span class="s2">= </span><span class="s3">&quot;3cEYpjA9oz9GiPac4AsH4n&quot;</span><span class="s2">;</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Content-Type&quot;</span><span class="s2">,</span><span class="s3">&quot;application/json&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">delete</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/playlists/&quot;</span><span class="s2">+</span><span class="s1">userplaylistid</span><span class="s2">+</span><span class="s3">&quot;/followers&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">Assert</span><span class="s2">.</span><span class="s1">assertEquals</span><span class="s2">(</span><span class="s1">res</span><span class="s2">.</span><span class="s1">statusCode</span><span class="s2">(),</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">CheckIfUserFollowsArtistsorUsers</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/following/contains?type=artist&amp;ids=2CIMQHirSU0MQqyYHq0eOx%2C57dN52uHvrHOxijzpIgu3E%2C1vCWHaC5f2uS3yhpwWbIA6&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">CheckifCurrentUserFollowsPlaylist</span><span class="s2">(){</span>
+        <span class="s1">String userplaylistid </span><span class="s2">= </span><span class="s3">&quot;3cEYpjA9oz9GiPac4AsH4n&quot;</span><span class="s2">;</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot; https://api.spotify.com/v1/playlists/&quot;</span><span class="s2">+</span><span class="s1">userplaylistid</span><span class="s2">+</span><span class="s3">&quot;/followers/contains&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+<span class="s4">//----------------------------------------------* (END USER) *--------------------------------------------------------------</span>
+
+<span class="s4">//----------------------------------------------* (START SEARCH) *--------------------------------------------------------------</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">search1</span><span class="s2">(){</span>
+        <span class="s1">Response res1 </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;accept&quot;</span><span class="s2">,</span><span class="s3">&quot;application/json&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Content-Type&quot;</span><span class="s2">,</span><span class="s3">&quot;application/json&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot;</span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">pathParam</span><span class="s2">(</span><span class="s3">&quot;q&quot;</span><span class="s2">,</span><span class="s3">&quot;Vijay&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">pathParam</span><span class="s2">(</span><span class="s3">&quot;type&quot;</span><span class="s2">,</span><span class="s3">&quot;album&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/search?q={q}&amp;type={type}&quot;</span><span class="s2">);</span>
+<span class="s4">//                    https://api.spotify.com/v1/search?q=Vijay&amp;type=album</span>
+        <span class="s1">res1</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res1</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">assertThat</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">search2</span><span class="s2">(){</span>
+        <span class="s1">Response res2 </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;accept&quot;</span><span class="s2">,</span><span class="s3">&quot;application/json&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Content-Type&quot;</span><span class="s2">,</span><span class="s3">&quot;application/json&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot;</span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">queryParam</span><span class="s2">(</span><span class="s3">&quot;q&quot;</span><span class="s2">,</span><span class="s3">&quot;Vijay&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">queryParam</span><span class="s2">(</span><span class="s3">&quot;type&quot;</span><span class="s2">,</span><span class="s3">&quot;album&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/search&quot;</span><span class="s2">);</span>
+<span class="s4">//                    https://api.spotify.com/v1/search?q=Vijay&amp;type=album</span>
+        <span class="s1">res2</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res2</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">assertThat</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+<span class="s4">//----------------------------------------------* (END SEARCH) *--------------------------------------------------------------</span>
+
+<span class="s4">//----------------------------------------------* (START MARKETS) *--------------------------------------------------------------</span>
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">GetAvailableMarkets</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/markets&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+<span class="s4">//----------------------------------------------* (END MARKETS) *--------------------------------------------------------------</span>
+
+<span class="s4">//----------------------------------------------* (START GENRE) *--------------------------------------------------------------</span>
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">GetAvailableGenreSeeds</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/recommendations/available-genre-seeds&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+<span class="s4">//----------------------------------------------* (END GENRE) *--------------------------------------------------------------</span>
+
+<span class="s4">//----------------------------------------------* (START CHAPTER) *--------------------------------------------------------------</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">GetaChapter</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/chapters/0D5wENdkdwbqlrHoaJ9g29&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s4">// res.then().statusCode(200);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">GetSeveralChapters</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/chapters?ids=0IsXVP0JmcB2adSE338GkK%2C3ZXb8FKZGU0EHALYX6uCzU%2C0D5wENdkdwbqlrHoaJ9g29&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s4">// res.then().statusCode(200);</span>
+    <span class="s2">}</span>
+<span class="s4">//----------------------------------------------* (END CHAPTER) *--------------------------------------------------------------</span>
+
+<span class="s4">//----------------------------------------------* (START CATEGORIES) *--------------------------------------------------------------</span>
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">GetSeveralBrowseCategories</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/browse/categories?locale=IN&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+        <span class="s1">@Test</span>
+        <span class="s0">public void </span><span class="s1">GetSingleBrowseCategory</span><span class="s2">(){</span>
+            <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                    <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                    <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/browse/categories/dinner&quot;</span><span class="s2">);</span>
+            <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+            <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+        <span class="s2">}</span>
+<span class="s4">//----------------------------------------------* (START ARTIST) *--------------------------------------------------------------</span>
+    <span class="s1">@Test</span>
+    <span class="s1">@BeforeClass</span>
+    <span class="s0">public void </span><span class="s1">GetArtist</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">String artistid </span><span class="s2">= </span><span class="s3">&quot;0TnOYISbd1XYRBk9myaseg&quot;</span><span class="s2">;</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;ArtistID   &quot; </span><span class="s2">+ </span><span class="s1">artistid</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">GetSeveralArtists</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/artists?ids=2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span><span class="s2">(</span><span class="s1">priority </span><span class="s2">= </span><span class="s5">13</span><span class="s2">)</span>
+    <span class="s0">public void </span><span class="s1">GetArtistsTopTracks</span><span class="s2">(){</span>
+        <span class="s1">String artistid </span><span class="s2">= </span><span class="s3">&quot;0TnOYISbd1XYRBk9myaseg&quot;</span><span class="s2">;</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/artists/&quot;</span><span class="s2">+ </span><span class="s1">artistid </span><span class="s2">+</span><span class="s3">&quot;/top-tracks&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span><span class="s2">(</span><span class="s1">priority </span><span class="s2">= </span><span class="s5">12</span><span class="s2">)</span>
+    <span class="s0">public void </span><span class="s1">GetArtistsAlbums</span><span class="s2">(){</span>
+        <span class="s1">String artistid </span><span class="s2">= </span><span class="s3">&quot;0TnOYISbd1XYRBk9myaseg&quot;</span><span class="s2">;</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/artists/&quot;</span><span class="s2">+ </span><span class="s1">artistid </span><span class="s2">+</span><span class="s3">&quot;/albums&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">GetArtistsRelatedArtists</span><span class="s2">(){</span>
+        <span class="s1">String artistid </span><span class="s2">= </span><span class="s3">&quot;0TnOYISbd1XYRBk9myaseg&quot;</span><span class="s2">;</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot; https://api.spotify.com/v1/artists/&quot; </span><span class="s2">+</span><span class="s1">artistid</span><span class="s2">+ </span><span class="s3">&quot;/related-artists&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+<span class="s4">//----------------------------------------------* (END ARTIST) *--------------------------------------------------------------</span>
+
+<span class="s4">//----------------------------------------------* (START MARKETS) *--------------------------------------------------------------</span>
+    <span class="s1">@Test</span>
+    <span class="s1">@BeforeClass</span>
+    <span class="s0">public void </span><span class="s1">GetAlbum</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/albums/4aawyAB9vmqN3uQ7FjRGTy&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">String albumid</span><span class="s2">=</span><span class="s1">res</span><span class="s2">.</span><span class="s1">path</span><span class="s2">(</span><span class="s3">&quot;id&quot;</span><span class="s2">);</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s1">albumid</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+        <span class="s1">@Test</span><span class="s2">(</span><span class="s1">priority </span><span class="s2">= </span><span class="s5">15</span><span class="s2">)</span>
+        <span class="s0">public void </span><span class="s1">GetSeveralAlbums</span><span class="s2">(){</span>
+            <span class="s1">String albumid </span><span class="s2">= </span><span class="s3">&quot;4aawyAB9vmqN3uQ7FjRGTy&quot;</span><span class="s2">;</span>
+            <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                    <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                    <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/albums?ids=&quot;</span><span class="s2">+ </span><span class="s1">albumid</span><span class="s2">);</span>
+            <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+            <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s1">@Test</span><span class="s2">(</span><span class="s1">priority </span><span class="s2">= </span><span class="s5">16</span><span class="s2">)</span>
+        <span class="s0">public void </span><span class="s1">GetAlbumTracks</span><span class="s2">(){</span>
+            <span class="s1">String albumid </span><span class="s2">= </span><span class="s3">&quot;4aawyAB9vmqN3uQ7FjRGTy&quot;</span><span class="s2">;</span>
+            <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                    <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                    <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot; https://api.spotify.com/v1/albums/&quot;</span><span class="s2">+</span><span class="s1">albumid</span><span class="s2">+</span><span class="s3">&quot;/tracks&quot;</span><span class="s2">);</span>
+            <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+            <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s1">@Test</span><span class="s2">(</span><span class="s1">priority </span><span class="s2">= </span><span class="s5">17</span><span class="s2">)</span>
+        <span class="s0">public void </span><span class="s1">GetUsersSavedAlbums</span><span class="s2">(){</span>
+            <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                    <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                    <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/albums&quot;</span><span class="s2">);</span>
+            <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+            <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s1">@Test</span><span class="s2">(</span><span class="s1">priority </span><span class="s2">= </span><span class="s5">18</span><span class="s2">)</span>
+        <span class="s4">//    1kDZSmw3mKQeAjcmPTLS3M-og</span>
+        <span class="s0">public void </span><span class="s1">CheckUsersSavedAlbums</span><span class="s2">(){</span>
+            <span class="s1">String albumid </span><span class="s2">= </span><span class="s3">&quot;4aawyAB9vmqN3uQ7FjRGTy&quot;</span><span class="s2">;</span>
+            <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                    <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                    <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/albums/contains?ids=&quot;</span><span class="s2">+</span><span class="s1">albumid</span><span class="s2">);</span>
+            <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+            <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s1">@Test</span>
+        <span class="s0">public void </span><span class="s1">GetNewReleases</span><span class="s2">(){</span>
+            <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                    <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                    <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/browse/new-releases&quot;</span><span class="s2">);</span>
+            <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+            <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s1">@Test</span><span class="s2">(</span><span class="s1">priority </span><span class="s2">= </span><span class="s5">19</span><span class="s2">)</span>
+        <span class="s4">//   1kDZSmw3mKQeAjcmPTLS3M</span>
+        <span class="s0">public void </span><span class="s1">SaveAlbumsforCurrentUser</span><span class="s2">(){</span>
+            <span class="s1">String albumid </span><span class="s2">= </span><span class="s3">&quot;4aawyAB9vmqN3uQ7FjRGTy&quot;</span><span class="s2">;</span>
+            <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                    <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                    <span class="s2">.</span><span class="s1">put</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/albums?ids=&quot;</span><span class="s2">+</span><span class="s1">albumid</span><span class="s2">);</span>
+            <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+            <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s1">@Test</span>
+        <span class="s0">public void </span><span class="s1">RemoveUsersSavedAlbums</span><span class="s2">(){</span>
+            <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                    <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                    <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/albums?ids=382ObEPsp2rxGrnsizN5TX%2C1A2GTWGtFfWp7KSQTwWOyo%2C2noRn2Aes5aoNVsU6iWThc&quot;</span><span class="s2">);</span>
+            <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+            <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+        <span class="s2">}</span>
+<span class="s4">//----------------------------------------------* (END ALBUMS) *--------------------------------------------------------------</span>
+
+<span class="s4">//----------------------------------------------* (START AUDIOBOOKS) *--------------------------------------------------------------</span>
+    <span class="s1">@Test</span>
+    <span class="s1">@BeforeClass</span>
+    <span class="s0">public void </span><span class="s1">GetanAudiobook</span><span class="s2">(){</span>
+        <span class="s1">String audiobookid </span><span class="s2">= </span><span class="s3">&quot;7iHfbu1YPACw6oZPAFJtqe&quot;</span><span class="s2">;</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/audiobooks?ids=18yVqkdbdRvS24c0Ilj2ci&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">audiobookid </span><span class="s2">= </span><span class="s1">res</span><span class="s2">.</span><span class="s1">path</span><span class="s2">(</span><span class="s3">&quot;id&quot;</span><span class="s2">);</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s1">audiobookid</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+        <span class="s1">@Test</span><span class="s2">(</span><span class="s1">priority </span><span class="s2">= </span><span class="s5">21</span><span class="s2">)</span>
+        <span class="s0">public void </span><span class="s1">GetSeveralAudiobooks</span><span class="s2">(){</span>
+            <span class="s1">String audiobookid </span><span class="s2">= </span><span class="s3">&quot;18yVqkdbdRvS24c0Ilj2ci,1HGw3J3NxZO1TP1BTtVhpZ,7iHfbu1YPACw6oZPAFJtqe&quot;</span><span class="s2">;</span>
+            <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                    <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                    <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/audiobooks?ids=&quot;</span><span class="s2">+</span><span class="s1">audiobookid</span><span class="s2">+</span><span class="s3">&quot;,1HGw3J3NxZO1TP1BTtVhpZ,7iHfbu1YPACw6oZPAFJtqe&quot;</span><span class="s2">);</span>
+            <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+            <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s1">@Test</span><span class="s2">(</span><span class="s1">priority </span><span class="s2">= </span><span class="s5">24</span><span class="s2">)</span>
+        <span class="s0">public void </span><span class="s1">GetUsersSavedAudiobooks</span><span class="s2">(){</span>
+            <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                    <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                    <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/audiobooks&quot;</span><span class="s2">);</span>
+            <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+            <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s1">@Test</span><span class="s2">(</span><span class="s1">priority </span><span class="s2">= </span><span class="s5">22</span><span class="s2">)</span>
+        <span class="s0">public void </span><span class="s1">GetAudiobookChapters</span><span class="s2">(){</span>
+            <span class="s1">String audiobookid </span><span class="s2">= </span><span class="s3">&quot;7iHfbu1YPACw6oZPAFJtqe&quot;</span><span class="s2">;</span>
+            <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                    <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                    <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/audiobooks?ids=&quot;</span><span class="s2">+</span><span class="s1">audiobookid</span><span class="s2">+</span><span class="s3">&quot;,1HGw3J3NxZO1TP1BTtVhpZ,7iHfbu1YPACw6oZPAFJtqe&quot;</span><span class="s2">);</span>
+            <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+            <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s1">@Test</span><span class="s2">(</span><span class="s1">priority </span><span class="s2">= </span><span class="s5">23</span><span class="s2">)</span>
+        <span class="s0">public void </span><span class="s1">CheckUsersSavedAudiobooks</span><span class="s2">(){</span>
+            <span class="s1">String audiobookid </span><span class="s2">= </span><span class="s3">&quot;18yVqkdbdRvS24c0Ilj2ci,1HGw3J3NxZO1TP1BTtVhpZ,7iHfbu1YPACw6oZPAFJtqe&quot;</span><span class="s2">;</span>
+            <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                    <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                    <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/audiobooks?ids=&quot;</span><span class="s2">+</span><span class="s1">audiobookid</span><span class="s2">+</span><span class="s3">&quot;,1HGw3J3NxZO1TP1BTtVhpZ,7iHfbu1YPACw6oZPAFJtqe&quot;</span><span class="s2">);</span>
+            <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+            <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s1">@Test</span><span class="s2">(</span><span class="s1">priority </span><span class="s2">= </span><span class="s5">25</span><span class="s2">)</span>
+        <span class="s0">public void </span><span class="s1">SaveAudiobooksforCurrentUser</span><span class="s2">(){</span>
+            <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                    <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                    <span class="s2">.</span><span class="s1">body</span><span class="s2">(</span><span class="s3">&quot;{</span><span class="s0">\&quot;</span><span class="s3">ids</span><span class="s0">\&quot;</span><span class="s3">: [</span><span class="s0">\&quot;</span><span class="s3">18yVqkdbdRvS24c0Ilj2ci</span><span class="s0">\&quot;</span><span class="s3">, </span><span class="s0">\&quot;</span><span class="s3">1HGw3J3NxZO1TP1BTtVhpZ</span><span class="s0">\&quot;</span><span class="s3">, </span><span class="s0">\&quot;</span><span class="s3">7iHfbu1YPACw6oZPAFJtqe</span><span class="s0">\&quot;</span><span class="s3">]}&quot;</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">put</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/audiobooks&quot;</span><span class="s2">);</span>
+            <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+            <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s1">@Test</span>
+        <span class="s0">public void </span><span class="s1">RemoveUsersSavedAudiobooks</span><span class="s2">(){</span>
+            <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                    <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                    <span class="s2">.</span><span class="s1">delete</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/audiobooks?ids=18yVqkdbdRvS24c0Ilj2ci,1HGw3J3NxZO1TP1BTtVhpZ,7iHfbu1YPACw6oZPAFJtqe&quot;</span><span class="s2">);</span>
+            <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+            <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+<span class="s4">//----------------------------------------------* (END AUDIOBOOKS) *--------------------------------------------------------------</span>
+
+<span class="s4">//----------------------------------------------* (START SHOW) *--------------------------------------------------------------</span>
+    <span class="s1">@Test</span><span class="s2">(</span><span class="s1">priority </span><span class="s2">= </span><span class="s5">26</span><span class="s2">)</span>
+    <span class="s0">public void </span><span class="s1">GetSeveralShows</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/shows?ids=5CfCWKI5pZ28U0uOzXkDHe%2C5as3aKmN2k11yfDDDSrvaZ&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s1">@BeforeClass</span>
+    <span class="s0">public void </span><span class="s1">GetShow</span><span class="s2">(){</span>
+        <span class="s1">String showid </span><span class="s2">= </span><span class="s3">&quot;38bS44xjbVVZ3No3ByF1dJ&quot;</span><span class="s2">;</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/shows/5CfCWKI5pZ28U0uOzXkDHe&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">showid</span><span class="s2">=</span><span class="s1">res</span><span class="s2">.</span><span class="s1">path</span><span class="s2">(</span><span class="s3">&quot;id&quot;</span><span class="s2">);</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s1">showid</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">GetShowEpisodes</span><span class="s2">(){</span>
+        <span class="s1">String showid </span><span class="s2">= </span><span class="s3">&quot;38bS44xjbVVZ3No3ByF1dJ&quot;</span><span class="s2">;</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/shows/&quot;</span><span class="s2">+</span><span class="s1">showid</span><span class="s2">+</span><span class="s3">&quot;/episodes&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">GetUsersSavedShows</span><span class="s2">(){</span>
+        <span class="s1">String showid </span><span class="s2">= </span><span class="s3">&quot;38bS44xjbVVZ3No3ByF1dJ&quot;</span><span class="s2">;</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/shows?ids=&quot;</span><span class="s2">+</span><span class="s1">showid</span><span class="s2">+</span><span class="s3">&quot;,C5as3aKmN2k11yfDDDSrvaZ&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">SaveShowsforCurrentUser</span><span class="s2">(){</span>
+        <span class="s1">String showid </span><span class="s2">= </span><span class="s3">&quot;5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ&quot;</span><span class="s2">;</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">put</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/shows?ids=&quot;</span><span class="s2">+</span><span class="s1">showid</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span><span class="s4">//0sXfyB6o89daCtf4JkH7iP</span>
+    <span class="s0">public void </span><span class="s1">RemoveUsersSavedShows</span><span class="s2">(){</span>
+        <span class="s1">String showid </span><span class="s2">= </span><span class="s3">&quot;5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ&quot;</span><span class="s2">;</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">delete</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/shows?ids=&quot;</span><span class="s2">+</span><span class="s1">showid</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">CheckUsersSavedShows</span><span class="s2">(){</span>
+        <span class="s1">String showid </span><span class="s2">= </span><span class="s3">&quot;5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ&quot;</span><span class="s2">;</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/shows/contains?ids=&quot;</span><span class="s2">+</span><span class="s1">showid</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+<span class="s4">//----------------------------------------------* (END SHOW) *--------------------------------------------------------------</span>
+
+<span class="s4">//----------------------------------------------* (START TRACKS) *--------------------------------------------------------------</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">GetTrack</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/tracks/5zCnGtCl5Ac5zlFHXaZmhy&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">GetSeveralTracks</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/tracks?ids=382ObEPsp2rxGrnsizN5TX&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">GetUsersSavedTracks</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/tracks&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">CheckUsersSavedTracks</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/tracks/contains?ids=382ObEPsp2rxGrnsizN5TX&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">SaveTracksforCurrentUser</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">put</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/tracks?ids=382ObEPsp2rxGrnsizN5TX&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">GetSeveralTracksAudioFeatures</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/audio-features?ids=7ouMYWpwJ422jRcDASZB7P%2C4VqPOruhp5EdPBeR92t6lQ%2C2takcwOaAZWiXQijPHIx7B&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">GetTracksAudioFeatures</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/audio-features/11dFghVXANMlKmJXsNCbNl&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void   </span><span class="s1">GetRecommendations</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/recommendations?seed_artists=4NHQUGzhtTLFvgF5SZesLK&amp;seed_genres=classical%2Ccountry&amp;seed_tracks=0c6xIDDpzE81m2q797ordA&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void   </span><span class="s1">RemoveUsersSavedTracks</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/tracks?ids=7ouMYWpwJ422jRcDASZB7P%2C4VqPOruhp5EdPBeR92t6lQ%2C2takcwOaAZWiXQijPHIx7B&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+<span class="s4">//----------------------------------------------* (END TRACKS) *--------------------------------------------------------------</span>
+
+<span class="s4">//----------------------------------------------* (START PLAYLIST) *--------------------------------------------------------------</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">GetPlaylist</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/playlists/3cEYpjA9oz9GiPac4AsH4n&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">String play</span><span class="s2">=</span><span class="s1">res</span><span class="s2">.</span><span class="s1">path</span><span class="s2">(</span><span class="s3">&quot;id&quot;</span><span class="s2">);</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s1">play</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">ChangePlaylistDetails</span><span class="s2">(){</span>
+        <span class="s1">String playlistid </span><span class="s2">= </span><span class="s3">&quot;3cEYpjA9oz9GiPac4AsH4n&quot;</span><span class="s2">;</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">body</span><span class="s2">(</span><span class="s3">&quot;{</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;   </span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;    </span><span class="s0">\&quot;</span><span class="s3">description</span><span class="s0">\&quot;</span><span class="s3">: </span><span class="s0">\&quot;</span><span class="s3">Updated playlist description</span><span class="s0">\&quot;</span><span class="s3">,</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;    </span><span class="s0">\&quot;</span><span class="s3">public</span><span class="s0">\&quot;</span><span class="s3">: false</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;}&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">put</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/playlists/&quot;</span><span class="s2">+</span><span class="s1">playlistid</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void   </span><span class="s1">GetPlaylistItems</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/playlists/3cEYpjA9oz9GiPac4AsH4n/tracks&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void   </span><span class="s1">UpdatePlaylistItems</span><span class="s2">(){</span>
+        <span class="s1">String playlistid </span><span class="s2">= </span><span class="s3">&quot;3cEYpjA9oz9GiPac4AsH4n&quot;</span><span class="s2">;</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">body</span><span class="s2">(</span><span class="s3">&quot;{</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;    </span><span class="s0">\&quot;</span><span class="s3">range_start</span><span class="s0">\&quot;</span><span class="s3">: 1,</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;    </span><span class="s0">\&quot;</span><span class="s3">insert_before</span><span class="s0">\&quot;</span><span class="s3">: 4,</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;    </span><span class="s0">\&quot;</span><span class="s3">range_length</span><span class="s0">\&quot;</span><span class="s3">: 2</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;}</span><span class="s0">\n</span><span class="s3">&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">put</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/playlists/&quot;</span><span class="s2">+</span><span class="s1">playlistid</span><span class="s2">+</span><span class="s3">&quot;/tracks&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">AddItemstoPlaylist</span><span class="s2">(){</span>
+        <span class="s1">String playlistid </span><span class="s2">= </span><span class="s3">&quot;3cEYpjA9oz9GiPac4AsH4n&quot;</span><span class="s2">;</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">body</span><span class="s2">(</span><span class="s3">&quot;{</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;    </span><span class="s0">\&quot;</span><span class="s3">uris</span><span class="s0">\&quot;</span><span class="s3">: [</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;        </span><span class="s0">\&quot;</span><span class="s3">spotify:track:5urYiIXu1ZhfMAOsp7WDTc</span><span class="s0">\&quot;\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;    ]</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;}&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">post</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/playlists/&quot;</span><span class="s2">+</span><span class="s1">playlistid</span><span class="s2">+</span><span class="s3">&quot;/tracks&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">201</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">GetCurrentUsersPlaylists</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/playlists&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void   </span><span class="s1">GetUsersPlaylists</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/users/31nakixlkshe2banry5tx3d2hnoe/playlists&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void   </span><span class="s1">CreatePlaylist</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">body</span><span class="s2">(</span><span class="s3">&quot;{</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;    </span><span class="s0">\&quot;</span><span class="s3">name</span><span class="s0">\&quot;</span><span class="s3">: </span><span class="s0">\&quot;</span><span class="s3">New Playlist</span><span class="s0">\&quot;</span><span class="s3">,</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;    </span><span class="s0">\&quot;</span><span class="s3">description</span><span class="s0">\&quot;</span><span class="s3">: </span><span class="s0">\&quot;</span><span class="s3">New playlist description</span><span class="s0">\&quot;</span><span class="s3">,</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;    </span><span class="s0">\&quot;</span><span class="s3">public</span><span class="s0">\&quot;</span><span class="s3">: false</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;}&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">post</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/users/MyPLayList/playlists&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">201</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void   </span><span class="s1">GetFeaturedPlaylists</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/browse/featured-playlists&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void   </span><span class="s1">GetCategorysPlaylists</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/browse/categories/dinner/playlists&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void   </span><span class="s1">GetPlaylistCoverImage</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/playlists/3cEYpjA9oz9GiPac4AsH4n/images&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void  </span><span class="s1">AddCustomPlaylistCoverImage</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">body</span><span class="s2">(</span><span class="s3">&quot;/9j/2wCEABoZGSccJz4lJT5CLy8vQkc9Ozs9R0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0cBHCcnMyYzPSYmPUc9Mj1HR0dEREdHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR//dAAQAAf/uAA5BZG9iZQBkwAAAAAH/wAARCAABAAEDACIAAREBAhEB/8QASwABAQAAAAAAAAAAAAAAAAAAAAYBAQAAAAAAAAAAAAAAAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAARAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwAAARECEQA/AJgAH//Z&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">post</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/playlists/0WioKBo6Sf6JLGz42Pr4Fv/images&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s4">//  res.then().statusCode(200);</span>
+    <span class="s2">}</span>
+<span class="s4">//----------------------------------------------* (END PLAYLIST) *--------------------------------------------------------------</span>
+
+<span class="s4">//----------------------------------------------* (START EPISODES) *--------------------------------------------------------------</span>
+    <span class="s1">@Test</span>
+    <span class="s1">@BeforeClass</span>
+    <span class="s4">//exmaple 3na8lYc2MmdGtCCz5cs4KM    4w2p5chl38Mp35dAubmjzX-og</span>
+    <span class="s0">public void   </span><span class="s1">GetEpisode</span><span class="s2">(){</span>
+        <span class="s1">String episodeid </span><span class="s2">= </span><span class="s3">&quot;512ojhOuo1ktJprKbVcKyQ&quot;</span><span class="s2">;</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/episodes/2EtOmHpIHwfRefGGZbutMT&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">episodeid</span><span class="s2">=</span><span class="s1">res</span><span class="s2">.</span><span class="s1">path</span><span class="s2">(</span><span class="s3">&quot;id&quot;</span><span class="s2">);</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;True&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void   </span><span class="s1">GetSeveralEpisodes</span><span class="s2">(){</span>
+        <span class="s1">String episodeid </span><span class="s2">= </span><span class="s3">&quot;77o6BIVlYM3msb4MMIL1jH,0Q86acNRm6V9GYx55SXKwf&quot;</span><span class="s2">;</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/episodes?ids=&quot;</span><span class="s2">+</span><span class="s1">episodeid</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void   </span><span class="s1">GetUsersSavedEpisodes</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/episodes&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void  </span><span class="s1">SaveEpisodesforCurrentUser</span><span class="s2">(){</span>
+        <span class="s1">String episodeid </span><span class="s2">= </span><span class="s3">&quot;77o6BIVlYM3msb4MMIL1jH,0Q86acNRm6V9GYx55SXKwf&quot;</span><span class="s2">;</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">put</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/episodes?ids=&quot;</span><span class="s2">+</span><span class="s1">episodeid</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void   </span><span class="s1">CheckUsersSavedEpisodes</span><span class="s2">(){</span>
+        <span class="s1">String episodeid </span><span class="s2">= </span><span class="s3">&quot;77o6BIVlYM3msb4MMIL1jH,0Q86acNRm6V9GYx55SXKwf&quot;</span><span class="s2">;</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/episodes/contains?ids=&quot;</span><span class="s2">+</span><span class="s1">episodeid</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void  </span><span class="s1">RemoveUsersSavedEpisodes</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">delete</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/episodes?ids=3na8lYc2MmdGtCCz5cs4KM&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+<span class="s4">//----------------------------------------------* (END EPISODES) *--------------------------------------------------------------</span>
+
+<span class="s4">//-------------------------------------------------* (START PLAYER) *------------------------------------------------------</span>
+    <span class="s1">@Test</span>
+    <span class="s0">public void  </span><span class="s1">TransferPlayback</span><span class="s2">(){</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">,</span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">,</span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+</span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">body</span><span class="s2">(</span><span class="s3">&quot;{</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;    </span><span class="s0">\&quot;</span><span class="s3">device_ids</span><span class="s0">\&quot;</span><span class="s3">: [</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;        </span><span class="s0">\&quot;</span><span class="s3">74ASZWbe4lXaubB36ztrGX</span><span class="s0">\&quot;\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;    ]</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;}&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">put</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/player&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">403</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void   </span><span class="s1">GetCurrentlyPlayingTrack</span><span class="s2">() {</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">, </span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">, </span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+ </span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/player/currently-playing&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void   </span><span class="s1">GetAvailableDevices</span><span class="s2">() {</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">, </span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">, </span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+ </span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/player/devices&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void   </span><span class="s1">StartResumePlayback</span><span class="s2">() {</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">, </span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">, </span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+ </span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">body</span><span class="s2">(</span><span class="s3">&quot;{</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;    </span><span class="s0">\&quot;</span><span class="s3">context_uri</span><span class="s0">\&quot;</span><span class="s3">: </span><span class="s0">\&quot;</span><span class="s3">spotify:album:5ht7ItJgpBH7W6vJ5BqpPr</span><span class="s0">\&quot;</span><span class="s3">,</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;    </span><span class="s0">\&quot;</span><span class="s3">offset</span><span class="s0">\&quot;</span><span class="s3">: {</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;        </span><span class="s0">\&quot;</span><span class="s3">position</span><span class="s0">\&quot;</span><span class="s3">: 5</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;    },</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;    </span><span class="s0">\&quot;</span><span class="s3">position_ms</span><span class="s0">\&quot;</span><span class="s3">: 0</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;}&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">put</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/player/play&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">403</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void   </span><span class="s1">GettheUsersQueue</span><span class="s2">() {</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">, </span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">, </span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+ </span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/player/queue&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">403</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public void   </span><span class="s1">GetRecentlyPlayedTracks</span><span class="s2">() {</span>
+        <span class="s1">Response res </span><span class="s2">= </span><span class="s1">given</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Accept&quot;</span><span class="s2">, </span><span class="s3">&quot;*/*&quot;</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">header</span><span class="s2">(</span><span class="s3">&quot;Authorization&quot;</span><span class="s2">, </span><span class="s3">&quot;Bearer &quot; </span><span class="s2">+ </span><span class="s1">token</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">when</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://api.spotify.com/v1/me/player/recently-played&quot;</span><span class="s2">);</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">prettyPrint</span><span class="s2">();</span>
+        <span class="s1">res</span><span class="s2">.</span><span class="s1">then</span><span class="s2">().</span><span class="s1">statusCode</span><span class="s2">(</span><span class="s5">200</span><span class="s2">);</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+
+</pre>
+</body>
+</html>
